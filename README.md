@@ -10,5 +10,3 @@
 - Python &ge; 2.7
 - Opencv &ge; 2.4
 - plantcv
-
- 
