@@ -1,0 +1,35 @@
+{
+  "_id": "temprary_recipe_1203",
+  "format": "flexformat",
+  "version": "1.0",
+  "seeds": ["lettuce", "http://www.edenbrothers.com/store/sweet_basil_seeds.html"],
+  "plant_type": ["lettuce", "warm"],
+  "certified_by": ["Tatsuya Iizuka"],
+  "optimization": ["general"],
+  "author": "Tatsuya Iizuka",
+  "rating": 0,
+  "downloads": 0,
+  "date_created": "2017-12-03",
+  "phases": [
+    { "name": "growth",
+      "cycles": 28,
+      "time_units" : "hours",
+      "step":
+        { "air_temperature": [
+            {"start_time": 0, "end_time": 4, "value": 24},
+            {"start_time": 4, "end_time": 14, "value": 20}],
+          "light_intensity_white": [
+            {"start_time": 0, "end_time": 4, "value": 1},
+            {"start_time": 4, "end_time": 14, "value": 0}],
+          "air_flush": [
+            {"start_time": 0, "end_time": 0.25, "value":10},
+            {"start_time": 2, "end_time": 2.25, "value":10},
+            {"start_time": 4, "end_time": 4.25, "value":10},
+            {"start_time": 6, "end_time": 6.25, "value":10},
+            {"start_time": 8, "end_time": 8.25, "value":10},
+            {"start_time": 10, "end_time": 10.25, "value":10},
+            {"start_time": 12, "end_time": 12.25, "value":10}]
+      }
+    }
+  ]
+}
