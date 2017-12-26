@@ -21,40 +21,19 @@ def init_game():
 def test():
     return "test string"
 
-@app.route('/get_next_recipe')
-def get_next_step():
+@app.route('/get_next_recipe', methods=['GET'])
+def get_next_recipe():
     optimizer = Optimizer('personal_food_computer')
-    next_step = optimizer.get_next_step()
-    recipe_id = 'test'
-    update_interval = 0.2
-    phase_cycle = 1
-    step_name = 'selected_by_optimizer'
 
-    recipe_doc = {
-        '_id':recipe_id,
-        'update':True,
-        'update_interval':update_interval,
-        'time_units':'hours',
-        'format':'flexformat',
-        'phases':[
-            {
-                'name': step_name,
-                'cycles': phase_cycle,
-                'time_units' : 'hours',
-                'step':next_step
-            }
-        ]
-    }
-    recipe_obj = {
-        'phase':{
-            'name': step_name,
-            'cycles': phase_cycle,
-            'time_units' : 'hours',
-            'step':next_step
-        },
-        'update_interval_value':update_interval,
-        'phase_duration':0.2
-    }
+    #TODO get parameters from GET request and make variable "arg"
+    #arg = request.args.get()
+    search_func = 'default_func'
+    arg = request.args
+    if 'search_func' in arg:
+        search_func = arg['search_func']
+    else:
+        print('search_func is not defined')
+    recipe_obj = optimizer.get_next_recipe(search_func=search_func, arg=arg)
     return jsonify(recipe_obj)
 
 
