@@ -42,23 +42,26 @@ class PlantImageProc():
         self.device = 0
         self.dark_threshold = 50
         self.bin_threshold = bin_threshold
-        self.plant_pos = plant_pos
+        self._plant_pos = plant_pos
         self.margin = margin
         self.output_dir = output_dir
     @property
     def hyper_parameters(self):
-        if self.plant_pos is None:
+        if self._plant_pos is None:
             if self._hyper_parameters:
                 return self._hyper_parameters
             else:
                 print('hyper_parameter is default value')
                 return self.get_default_hyperparam()
         else:
-            return  self.make_hyper_params_from_pos(self.plant_pos,
+            return  self.make_hyper_params_from_pos(self._plant_pos,
                                                                 bin_threshold=self.bin_threshold, margin=self.margin)
     @hyper_parameters.setter
     def hyper_parameters(self, hyper_parameters):
         self._hyper_parameters = hyper_parameters
+
+    def set_plant_pos(self, plant_pos):
+        self._plant_pos = plant_pos
 
     def get_default_hyperparam(self):
         hyper_parameters = {
