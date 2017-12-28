@@ -40,6 +40,7 @@ class PlantImageProc():
         self._plant_pos = plant_pos
         self.margin = margin
         self.output_dir = output_dir
+        self.hyper_parameters =self.get_default_hyperparam()
 
     @property
     def hyper_parameters(self):
