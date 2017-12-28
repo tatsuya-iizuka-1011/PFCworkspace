@@ -1,5 +1,5 @@
 import sys
-#inclue plantcv pathi
+#inclue plantcv path
 PLANTCV_PATH = '/home/iizuka/workspace/py2/lib/plantcv'
 sys.path.append(PLANTCV_PATH)
 
