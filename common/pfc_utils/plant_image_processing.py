@@ -37,10 +37,12 @@ class PlantImageProc():
         self.device = 0
         self.dark_threshold = 50
         self.bin_threshold = bin_threshold
+        if plant_pos is None:
+            self.hyper_parameters =self.get_default_hyperparam()
+
         self._plant_pos = plant_pos
         self.margin = margin
         self.output_dir = output_dir
-        self.hyper_parameters =self.get_default_hyperparam()
 
     @property
     def hyper_parameters(self):

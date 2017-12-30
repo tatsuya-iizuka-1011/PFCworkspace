@@ -18,7 +18,6 @@ setup(
         'couchdb',
         'matplotlib',
         'numpy',
-        'opencv-python',
         'pandas',
     ]
 )
