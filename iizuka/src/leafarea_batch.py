@@ -11,9 +11,7 @@ import pandas as pd
 from pfc_utils.plant_image_processing import PlantImageProc
 
 positions = ('top', 'left', 'right', 'bottom')
-plant_pos = {
-        'left':[250,350], 'top':[650, 100], 'right':[880, 350], 'bottom':[650,550]
-}
+
 
 def get_contour_area(ser):
         areas = []
@@ -29,7 +27,7 @@ def get_contour_area(ser):
 
 if __name__ == '__main__':
     data_folder = sys.argv[1]
-    image_proc = PlantImageProc(plant_pos=plant_pos)
+    image_proc = PlantImageProc(output_dir='/home/iizuka/foodcomputer-vm/iizuka/output')
     output = pd.DataFrame()
 
     for f in tqdm(os.listdir(data_folder)):
@@ -42,6 +40,7 @@ if __name__ == '__main__':
 
         shape_data_dict = pd.Series(shape_data_dict, name=f)
         output = output.append(shape_data_dict)
+
 
     output.to_csv('raw_result.csv')
 
