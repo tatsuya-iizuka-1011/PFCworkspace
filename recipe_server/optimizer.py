@@ -13,6 +13,9 @@ class Optimizer:
         search_funcs = {
             'day_duration_search':self.day_duration_search
         }
+        if search_func not in search_funcs:
+            # TODO write erorr process
+            a = search_funcs['day_duration_search'](arg)
         a = search_funcs[search_func](arg)
         rv = RecipeVector(a)
         step_obj = rv.make_step_obj()
@@ -21,7 +24,7 @@ class Optimizer:
         next_phase = 0
         if 'next_phase' in arg:
             next_phase = int(arg['next_phase'])
-        day_duration = min(24, 16+next_phase*4)
+        day_duration = min(24, 12+next_phase*4)
         a = {
             'cycle_duration':24,
             'day_duration':day_duration,

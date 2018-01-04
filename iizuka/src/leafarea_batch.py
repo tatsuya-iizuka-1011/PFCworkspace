@@ -4,12 +4,14 @@
 import json
 import sys
 import os
+import datetime
 
 from tqdm import tqdm
 import pandas as pd
 
 from pfc_utils.plant_image_processing import PlantImageProc
 
+CSV_PATH = '/home/iizuka/foodcomputer-vm/output/csv'
 positions = ('top', 'left', 'right', 'bottom')
 
 
@@ -22,8 +24,11 @@ def get_contour_area(ser):
                 areas.append(contour_area)
             except:
                 areas.append(-1)
-
         return areas
+def to_datetime(filename):
+    unixTime = int(filename.split('.')[0])
+    return datetime.datetime.fromtimestamp(unixTime)
+
 
 if __name__ == '__main__':
     data_folder = sys.argv[1]
@@ -41,7 +46,6 @@ if __name__ == '__main__':
         shape_data_dict = pd.Series(shape_data_dict, name=f)
         output = output.append(shape_data_dict)
 
-
     output.to_csv('raw_result.csv')
 
     output.apply(
@@ -49,7 +53,14 @@ if __name__ == '__main__':
     ).apply(
         pd.Series
     ).rename(
-        columns = dict(zip(range(len(positions)), positions))
-    ).to_csv('contour_area.csv')
+        columns=dict(zip(range(len(positions)), positions))
+    )
 
+    output.rename(columns={'Unnamed: 0': 'timestamp'}, inplace=True)
+    output.timestamp = output.timestamp.apply(to_datetime)
 
+    output.sort_values(
+        by='timestamp', ascending=True
+    ).to_csv(
+        '{}/contour_area_sorted.csv'.format(CSV_PATH)
+    )
