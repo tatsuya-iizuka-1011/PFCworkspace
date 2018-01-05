@@ -77,7 +77,7 @@ class DataManipulator():
         ts_recipe_end = pd.Series(
             recipe_end_list[:,0].astype(dtype=np.str), index=recipe_end_list[:,1]
         )
-        return pd.DataFram({RECIPE_START:ts_recipe_start, RECIPE_END:ts_recipe_end})
+        return pd.DataFrame({RECIPE_START:ts_recipe_start, RECIPE_END:ts_recipe_end})
 
     def get_variable_data(self, condition_dict):
         '''
