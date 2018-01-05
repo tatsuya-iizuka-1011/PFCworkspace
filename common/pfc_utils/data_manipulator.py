@@ -62,7 +62,6 @@ class DataManipulator():
         if not hasattr(self, 'recipe_db'):
             self.init_recipe_server(pfc_id=pfc_id)
         condition_dict_start = {'variable': RECIPE_START, 'is_desired':True}
-        print(self.recipe_db, condition_dict_start, RECIPE_VIEW_ID)
         recipe_start_list = self.get_series_data(
             db=self.recipe_db, condition_dict=condition_dict_start, view_id=RECIPE_VIEW_ID
         )
