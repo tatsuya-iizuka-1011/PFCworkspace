@@ -16,7 +16,7 @@ df.rename(columns={'Unnamed: 0': 'timestamp'}, inplace=True)
 df.timestamp = df.timestamp.apply(to_datetime)
 
 df.sort_values(
-        by='timestamp', ascending=True
-    ).to_csv(
-        '{}/contour_area_sorted.csv'.format(CSV_PATH)
-    )
+    by='timestamp', ascending=True
+).to_csv(
+    '{}/contour_area_sorted.csv'.format(CSV_PATH)
+)

@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     output.to_csv('raw_result.csv')
 
-    output.apply(
+    df = output.apply(
         get_contour_area, axis=1
     ).apply(
         pd.Series
@@ -56,10 +56,9 @@ if __name__ == '__main__':
         columns=dict(zip(range(len(positions)), positions))
     )
 
-    output.rename(columns={'Unnamed: 0': 'timestamp'}, inplace=True)
-    output.timestamp = output.timestamp.apply(to_datetime)
-
-    output.sort_values(
+    df['timestamp'] = df.index.values
+    df.timestamp = df.timestamp.apply(to_datetime)
+    df.sort_values(
         by='timestamp', ascending=True
     ).to_csv(
         '{}/contour_area_sorted.csv'.format(CSV_PATH)
